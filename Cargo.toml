@@ -5,3 +5,5 @@ authors = ["davegoddard"]
 edition = "2018"
 
 [dependencies]
+rand = "0.3"
+crossterm = "0.4"
