@@ -28,13 +28,10 @@ fn next(old: Vec<Vec<bool>>) -> Vec<Vec<bool>> {
     ).collect()
 }
 
-fn print(population: &Vec<Vec<bool>>) {
-    for row in population.iter() {
-        for cell in row.iter() {
-            print!("{}", if *cell { "🀫" } else { "🀆" });
-        }
-        println!("");
-    }
+fn conway_string(population: &Vec<Vec<bool>>) -> String {
+    population.iter().map(|row|
+        row.iter().map(|cell| if *cell { "🀫" } else { "🀆" }).collect::<Vec<&str>>().join("")
+    ).collect::<Vec<String>>().join("\n") +"\n"
 }
 
 fn main() {
@@ -44,7 +41,7 @@ fn main() {
 
     let mut population = gen(20);
     loop {
-        print(&population);
+        print!("{}", conway_string(&population));
         thread::sleep(wait_duration);
         population = next(population);
 
